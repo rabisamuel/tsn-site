@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Rabi Samuel</title>
+  <meta name="description" content="Get in touch with Rabi Samuel, author of The Sixteenth Night." />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-brand">Rabi Samuel</a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+      </button>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="the-book.html">The Book</a></li>
+        <li><a href="author.html">Author</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="section" style="padding-top: 5rem;">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-section">
+          <p class="contact-blurb">For press, rights, events, or to say hello. Replies come from the author directly.</p>
+          <div data-fs-success class="contact-success" style="display:none;">
+            Thank you — your message has been sent.
+          </div>
+          <div data-fs-error class="contact-error" style="display:none;">
+            Oops! Something went wrong. Please try again.
+          </div>
+          <!-- PLACEHOLDER: create a new Formspree form for this book and
+               replace FORM_ID below (currently reusing the Cold Mine form). -->
+          <form id="contact-form" action="https://formspree.io/f/xjgzgovn" method="POST">
+            <input type="text" class="contact-input" name="name" placeholder="Your name" data-fs-field required />
+            <span data-fs-error="name"></span>
+            <input type="email" class="contact-input" name="email" placeholder="Your email" data-fs-field required />
+            <span data-fs-error="email"></span>
+            <input type="text" class="contact-input" name="subject" placeholder="Subject" data-fs-field />
+            <span data-fs-error="subject"></span>
+            <textarea class="contact-textarea" name="message" placeholder="Your message" data-fs-field required></textarea>
+            <span data-fs-error="message"></span>
+            <div style="text-align:center; margin-top:1rem;">
+              <button type="submit" class="btn btn-primary" data-fs-submit-btn>Send Message</button>
+            </div>
+          </form>
+          <div class="contact-direct">
+            <p>Prefer to write directly?</p>
+            <!-- PLACEHOLDER: update with the email address for this book's domain -->
+            <p style="margin-top: 0.5rem;"><a href="mailto:hello@example.com" style="font-size: 1.1rem;">hello@example.com</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p class="footer-text">&copy; 2026 Rabi Samuel. All Rights Reserved.</p>
+  </footer>
+  <div id="thankYouModal" class="thankyou-modal">
+    <div class="thankyou-content">
+      <h2>Thank You</h2>
+      <p>Your message has been sent successfully.</p>
+      <button id="closeThankYou" class="btn btn-primary">Close</button>
+    </div>
+  </div>
+  <script src="js/site.js"></script>
+  <script>
+    window.formspree =
+      window.formspree ||
+      function () {
+        (formspree.q = formspree.q || []).push(arguments);
+      };
+
+    formspree("initForm", {
+      formElement: "#contact-form",
+      formId: "xjgzgovn",
+      onSuccess: function() {
+        document.getElementById("contact-form").reset();
+        const modal = document.getElementById("thankYouModal");
+        const closeBtn = document.getElementById("closeThankYou");
+        modal.style.display = "flex";
+        closeBtn.onclick = () => modal.style.display = "none";
+        modal.onclick = (e) => {
+          if (e.target === modal) modal.style.display = "none";
+        };
+      }
+    });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+</body>
+</html>
